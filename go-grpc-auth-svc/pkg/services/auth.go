@@ -38,7 +38,7 @@ func (s *Server) Register(ctx context.Context, req *pb.RegisterRequest) (*pb.Reg
 func (s *Server) Login(ctx context.Context, req *pb.LoginRequest) (*pb.LoginResponse, error) {
 	var user models.User
 
-	if result := s.H.DB.Where(&models.User{Email: req.Email}).First(&user); result.Error == nil {
+	if result := s.H.DB.Where(&models.User{Email: req.Email}).First(&user); result.Error != nil {
 		return &pb.LoginResponse{
 			Status: http.StatusNotFound,
 			Error:  "User not found",
@@ -50,7 +50,7 @@ func (s *Server) Login(ctx context.Context, req *pb.LoginRequest) (*pb.LoginResp
 	if !match {
 		return &pb.LoginResponse{
 			Status: http.StatusNotFound,
-			Error:  "User not found",
+			Error:  "User not found not matched",
 		}, nil
 	}
 
@@ -74,7 +74,7 @@ func (s *Server) Validate(ctx context.Context, req *pb.ValidateRequest) (*pb.Val
 
 	var user models.User
 
-	if result := s.H.DB.Where(&models.User{Email: claims.Email}).First(&user); result.Error == nil {
+	if result := s.H.DB.Where(&models.User{Email: claims.Email}).First(&user); result.Error != nil {
 		return &pb.ValidateResponse{
 			Status: http.StatusNotFound,
 			Error:  "User not found",
