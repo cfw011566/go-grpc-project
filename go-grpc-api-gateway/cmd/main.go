@@ -1,13 +1,13 @@
 package main
 
 import (
-	"log"
+    "log"
 
-	"example.com/go-grpc-api-gateway/pkg/auth"
-	"example.com/go-grpc-api-gateway/pkg/config"
-	"example.com/go-grpc-api-gateway/pkg/order"
-	"example.com/go-grpc-api-gateway/pkg/product"
-	"github.com/gin-gonic/gin"
+    "example.com/go-grpc-api-gateway/pkg/auth"
+    "example.com/go-grpc-api-gateway/pkg/config"
+    "example.com/go-grpc-api-gateway/pkg/order"
+    "example.com/go-grpc-api-gateway/pkg/product"
+    "github.com/gin-gonic/gin"
 )
 
 func main() {
